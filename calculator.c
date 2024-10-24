@@ -33,5 +33,5 @@ double calculate(double num1, double num2, char operation) {
 
 int func (){
     int a[5];
-    int a[6]=0
+    a[6]=0;
 }
