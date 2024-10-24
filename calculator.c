@@ -29,6 +29,5 @@ double calculate(double num1, double num2, char operation) {
             return 0;
     }
     return result;
-
-//---
+}
 
