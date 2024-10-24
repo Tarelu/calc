@@ -1,0 +1,44 @@
+name: Run tests
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  unit-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout for unit-tests
+      uses: actions/checkout@v4
+
+    - name: Install cunit
+      run: sudo apt-get install -y gcc libcunit1-dev
+      
+    - name: Build unit tests
+      run: gcc test.c -o test-calc -l cunit
+
+    - name: Run unit tests
+      run: ./test-calc
+
+  end-to-end-test:
+
+      runs-on: ubuntu-latest
+      needs: unit-test
+
+      steps:
+        - name: Checkout for e2e-tests
+          uses: actions/checkout@v4
+
+        - name: Install Docker
+          uses: docker/setup-buildx-action@v3
+
+        - name: Build and test image
+          run: |
+            pr_num=${{github.event.pull_request.number}}
+            image="tarolena/calc:pull-req${pr_num}"
+            docker build --tag "$image" .
+            chmod +x e2e-tests.sh
+            ./e2e-tests.sh "$image"
