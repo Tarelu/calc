@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    double num1 = atof(argv[1]);
+    double num1 = atof(argv[1])+1;
     char operation = argv[2][0];
     double num2 = atof(argv[3]);
 
