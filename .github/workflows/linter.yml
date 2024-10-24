@@ -1,0 +1,19 @@
+name: linter
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  cppckeck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install cppcheck
+        run: sudo apt-get install -y cppcheck
+
+      - name: Run cppcheck
+        run: cppcheck --error-exitcode=1 --std=c99 ./
+  
