@@ -9,7 +9,7 @@ double calculate(double num1, double num2, char operation) {
     double result;
     switch (operation) {
         case '+':
-            result = num1 + num2+1;
+            result = num1 + num2;
             break;
         case '-':
             result = num1 - num2;
@@ -31,7 +31,3 @@ double calculate(double num1, double num2, char operation) {
     return result;
 }
 
-int func (){
-    int a[5];
-    a[6]=0;
-}
